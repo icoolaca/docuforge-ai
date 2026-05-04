@@ -1,160 +1,171 @@
-# Nerval Quick Estimate Creator
+# DocuForge AI
 
-A professional, web-based quotation and estimate system built for **Nerval** — designed for millwork, cabinetry, glass, and construction trades. Create branded quotes with line items, architectural drawings, pin annotations, and save as PDF.
+**Smart Document-to-HTML Converter** — Upload any CSV or PDF, let AI parse and organize every detail, then export as a beautifully formatted, print-ready HTML page or PDF.
 
-**Live →** [https://icoolaca.github.io/Quote-Generator-Nrv/](https://icoolaca.github.io/Quote-Generator-Nrv/)
+🔗 **Repository:** [https://github.com/icoolaca/docuforge-ai](https://github.com/icoolaca/docuforge-ai)
+
+![React](https://img.shields.io/badge/React-18+-61DAFB?logo=react&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Styling-CSS_Variables-blue)
+![Claude API](https://img.shields.io/badge/AI-Claude_Sonnet-orange)
+![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
 ## Features
 
-### Quotation Builder
-- **Nerval-branded layout** — red/charcoal/white with embedded Nerval SVG logo
-- **Editable document title** — change "QUOTATION" to "ESTIMATE", "INVOICE", or anything
-- **Editable number label** — "#:" by default, change to "Quote:", "Ref:", "PO:", etc.
-- **Editable contact info** — two-line textarea in the red header for phone, fax, address
-- **Client info** — Prepared For / Ship To with proper form fields (auto-complete enabled)
-- **Meta fields** — Customer #, Carrier, PO #, Ship Date, Salesperson (with mobile inline labels)
-- **Quote number & date** — auto-generated, fully editable
-
-### Line Items Table
-- Add, duplicate, and remove rows
-- Columns: LN, Image, Item No, Qty, UOM, Description, Net Price, Ext Amt
-- **Proportional column widths** — Image, Item No, and Description adjustable via Settings or by dragging header dividers. Always fills 100%.
-- **Item images** — upload, drag-and-drop, or **paste from clipboard** (Ctrl+V)
-- **Auto-growing description** — textarea expands as you type
-- **Bordered inputs** — all fields have visible borders for clarity
-
-### Visibility Toggles
-- **Prices toggle** — hide/show Net Price and Ext Amt columns
-- **Extras toggle** — hide/show Freight, PST, Deposit, and Balance (defaults to Simple/hidden)
-
-### Drawings & Visuals
-- Upload kitchen plans, renderings, or architectural drawings
-- **Zoom & pan canvas** — +/− buttons to zoom, Space+drag to pan
-- **Pin annotations** — click to place, drag to move, edit text inline. Pins stay accurate at any zoom level.
-- Each drawing gets its own title, total price, and notes
-- Drawing titles appear in the summary totals (e.g. "Kitchen Plan $9,180.00" instead of generic "Drawings")
-- Pins render in printed/saved PDF
-
-### Settings & Customization
-- **Font sizes** — sliders for Header, Subheader, Body, Small, Contact Info, and Pin Size
-- **Column widths** — ratio sliders for Image, Item No, Description
-- **Company logo** — Nerval logo default, replaceable
-- **Currency selector** — CAD, USD, EUR, GBP, AUD
-- **Notes and Terms & Conditions** fields
-- **All CSS in `src/styles.css`** — edit directly for full styling control
-
-### Calculations
-- Auto-calculated subtotals per drawing and for line items
-- GST/HST with editable rate (always visible)
-- Freight, PST, Deposit, Balance (toggleable via Extras switch)
-- Grand total
-
-### Save & Print
-- **Save as PDF** — opens print dialog, choose "Save as PDF" as destination
-- **Print** — browser print with clean multi-page layout
-- Both use native browser rendering for reliable multi-page output with all images
-
-### Data Persistence
-- **Auto-save** — all changes save to localStorage automatically
-- **Save / Load / Duplicate** — store up to 50 named quotations
-- **New quote** — one-click reset with fresh number
-
-### Mobile Responsive
-- Stacked card layout on narrow screens with inline field labels
-- All grids collapse to single column
-- Touch-friendly inputs and controls
+- **AI-Powered Parsing** — Uses Claude Sonnet API to intelligently extract and structure all data from your documents
+- **Custom AI Prompts** — Guide the AI with your own instructions or use quick presets (Spec Sheet, Financial Report, Inventory List, General Extract)
+- **Smart Section Detection** — Automatically organizes content into features, specifications, data tables, key-value pairs, text blocks, notes, and image placeholders
+- **Full Branding Customization** — Live color pickers for 7 theme variables + logo upload, all reflected instantly
+- **Editable Header & Footer** — Click-to-edit company name, tagline, and footer contact info
+- **Responsive Layout** — Fluid sizing with `clamp()`, auto-fit grids, and mobile-first breakpoints — works on any screen size
+- **Print / Save as PDF** — Optimized `@media print` stylesheet with proper page breaks and color preservation
+- **Download Standalone HTML** — Export a fully self-contained `.html` file with all styles, fonts, and logo embedded — zero dependencies
 
 ---
 
 ## Quick Start
 
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18+)
+- A Claude API key from [Anthropic](https://console.anthropic.com/)
+
+### Installation
+
 ```bash
-git clone https://github.com/icoolaca/Quote-Generator-Nrv.git
-cd Quote-Generator-Nrv
+# Clone the repository
+git clone https://github.com/icoolaca/docuforge-ai.git
+cd docuforge-ai
+
+# Install dependencies
 npm install
+
+# Start the development server
 npm run dev
 ```
 
-Open **http://localhost:5173**
+### Usage
 
----
-
-## Deploy to GitHub Pages
-
-1. **Settings → Pages → Source → GitHub Actions**
-2. Push to `main` — auto-builds and deploys
-3. Live at `https://<username>.github.io/Quote-Generator-Nrv/`
-
----
-
-## Customizing Styles
-
-All CSS is in **`src/styles.css`** — organized into labeled sections:
-
-| Section | Classes |
-|---------|---------|
-| Buttons | `.nv-btn`, `.nv-btn-red`, `.nv-btn-dark` |
-| Inputs | `.nv-cell-input`, `.nv-field-label` |
-| Table | `.nv-row`, `.nv-hdr-cell`, `.nv-table-scroll` |
-| Toggle | `.nv-toggle` |
-| Canvas | `.nv-canvas-viewport` |
-| Pins | `.nv-pin-dot`, `.nv-pin-label-main`, `.nv-pin-label-sub` |
-| Logo | `.nv-logo` |
-| Layout | `.nv-card`, `.nv-red-stripe`, `.nv-toast` |
-| Mobile | `.nv-mobile-card`, `.nv-mob-label` |
+1. **Upload** a `.csv` or `.pdf` file via drag-and-drop or file picker
+2. **Customize AI instructions** (optional) — pick a preset or type your own prompt
+3. Click **Parse & Generate** — the AI analyzes your document and builds a structured page
+4. **Customize branding** — open the Branding panel to adjust colors and upload a logo
+5. **Edit header/footer** — click the ✏️ buttons to add your company info
+6. **Export** — use **Print / PDF** for paper output or **Download HTML** for a standalone web page
 
 ---
 
 ## Project Structure
 
 ```
-Quote-Generator-Nrv/
-├── index.html
-├── package.json
-├── vite.config.js
+docuforge-ai/
 ├── src/
-│   ├── main.jsx              # React mount
-│   ├── App.jsx               # Application logic
-│   └── styles.css            # All styles (edit here)
-└── .github/
-    └── workflows/
-        └── deploy.yml        # Auto-deploy
+│   └── DocumentConverter.jsx    # Main React component (self-contained)
+├── README.md
+├── LICENSE
+└── .gitignore
 ```
 
+### Component Architecture
+
+`DocumentConverter.jsx` is a single-file React component that includes:
+
+- **State management** — file handling, parsed sections, branding colors, header/footer content
+- **AI integration** — Claude Sonnet API call with dynamic system prompt injection
+- **Section renderers** — typed renderers for features, specs, tables, key-values, text, notes, images
+- **Branding engine** — CSS variables updated live via React state
+- **Export engine** — HTML generation with embedded styles, fonts, and base64 logo
+- **Shared CSS function** — `getSharedCSS()` used both inline and in exported HTML for consistency
+
+### Section Types
+
+| Type | Description | Rendering |
+|------|-------------|-----------|
+| `features` | Bullet-point feature lists | 2-column responsive grid |
+| `specs` | Label/value specification pairs | Paired 4-column table (collapses on mobile) |
+| `table` | Tabular data with headers | Full data table with sticky headers |
+| `text` | Paragraph content | Formatted prose block |
+| `key-values` | Key-value pairs | 2-column card grid |
+| `notes` | Warnings or notes | Amber-styled callout block |
+| `images` | Image descriptions | Dashed placeholder cards |
+
 ---
 
-## Keyboard Shortcuts
+## Integration Guide
 
-| Action | Shortcut |
-|--------|----------|
-| Paste image | **Ctrl+V** (click cell first) |
-| Pan drawing | **Space + drag** |
-| Place pin | **Click** on image |
-| Move pin | **Drag** the pin dot |
+### As a Standalone React Component
+
+```jsx
+import DocumentConverter from './src/DocumentConverter';
+
+function App() {
+  return <DocumentConverter />;
+}
+```
+
+The component is fully self-contained — no external CSS files, no additional dependencies beyond React.
+
+### API Configuration
+
+The component calls the Claude API directly from the browser. For production use, you should proxy API calls through your backend:
+
+```javascript
+// Replace the fetch URL in DocumentConverter.jsx
+const res = await fetch("/api/parse-document", { ... });
+```
+
+### Required Libraries
+
+- `react` (v18+)
+- Google Fonts: **DM Sans** (body) + **JetBrains Mono** (monospace values)
+- No other runtime dependencies
 
 ---
 
-## Tech Stack
+## Customization
 
-| Layer | Tech |
-|-------|------|
-| UI | React 18 |
-| Build | Vite 6 |
-| PDF | Native browser print → Save as PDF |
-| Fonts | Barlow / Barlow Condensed (Google Fonts) |
-| Storage | localStorage |
-| Styling | Plain CSS (`styles.css`) |
+### Default Colors
 
----
+| Variable | Default | Purpose |
+|----------|---------|---------|
+| `primary` | `#1e3a5f` | Header bar, company name |
+| `accent` | `#2b6cb0` | Links, values, table headers |
+| `accentLight` | `#e8f1fb` | Hover states, highlights |
+| `surface` | `#f5f7fa` | Alternating rows, backgrounds |
+| `text` | `#1a2332` | Primary text |
+| `text2` | `#4a5568` | Secondary text |
+| `border` | `#dfe4ec` | Dividers, borders |
 
-## Built By
+All colors are editable at runtime via the Branding panel.
 
-**JohnL** — Product Designer & Developer
+### Adding Custom Presets
+
+Edit the `PRESETS` array at the top of `DocumentConverter.jsx`:
+
+```javascript
+const PRESETS = [
+  { label: "My Custom Type", prompt: "Your AI instructions here..." },
+  // ...
+];
+```
 
 ---
 
 ## License
 
-MIT
+MIT License — see [LICENSE](LICENSE) for details.
+
+---
+
+## Author
+
+**John Lutao**
+
+---
+
+## Acknowledgments
+
+- [Anthropic Claude API](https://docs.anthropic.com/) — AI-powered document parsing
+- [DM Sans](https://fonts.google.com/specimen/DM+Sans) — Primary typeface
+- [JetBrains Mono](https://fonts.google.com/specimen/JetBrains+Mono) — Monospace typeface
